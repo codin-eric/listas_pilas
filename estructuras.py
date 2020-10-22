@@ -79,6 +79,7 @@ class Stack:
     def push(self,valor):
         if self.nodo:
             new = Nodo_stack(valor,self.nodo)
+            self.nodo = new
         else:
             self.nodo = Nodo_stack(valor,None)
         
@@ -94,12 +95,26 @@ class Stack:
             return valor
         else:
             print("Lista vacia")
+
+    def listar(self):
+        return self.nodo.listar()
     
     
 class Nodo_stack:
     def __init__(self, valor, next):
         self.valor = valor
         self.next = next
+
+    def listar(self):
+        if self:
+            if self.next:
+                seguiente = self.next.listar()
+            else:
+                return self.valor
+            return f"{seguiente} {self.valor}"
+        else:
+            return "Lista vacia"
+
 
 if __name__ == "__main__":
     from random import randint
